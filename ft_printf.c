@@ -5,8 +5,7 @@
 
 int	ft_printc(char c)
 {
-	write(1, &c, 1);
-	return (1);
+	return (write(1, &c, 1));
 }
 
 size_t	ft_strlen(const char *s)
@@ -53,6 +52,22 @@ int	ft_printd(int n)
 	{
 		i += ft_printc(n + 48);
 	}
+	return (i);
+}
+
+int	ft_printhex(unsigned int num, char xX)
+{
+	char *base = "0123456789ABCDEF";
+	int	i;
+
+	i = 0;
+	if (num >= 16)
+	{
+		i += ft_printhex(num / 16);
+		i += ft_printhex(num % 16);
+	}
+	else
+		i += ft_printc(base[num]);
 	return (i);
 }
 
