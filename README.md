@@ -6,8 +6,8 @@
 
 ## Prototype
 
-```c```
-int ft_printf(const char *, ...);
+```c
+int ft_printf(const char *, ...);```
 
 ## Conversions Handled
 
