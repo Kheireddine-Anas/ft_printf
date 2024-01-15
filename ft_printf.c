@@ -8,28 +8,23 @@ int	ft_printc(char c)
 	return (write(1, &c, 1));
 }
 
-size_t	ft_strlen(const char *s)
+int	ft_prints(char *s)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
-
-void	ft_prints(char *s)
-{
-	while (*s)
+	while (*(s + i))
 	{
-		write(1, s, 1);
-		s++;
+		write(1, (s + i), 1);
+		i++;
 	}
+	return (i);
 }
 
 int	ft_printd(int n)
 {
 	int	i;
+
 	i = 0;
 	if (n == -2147483648)
 	{
@@ -55,95 +50,128 @@ int	ft_printd(int n)
 	return (i);
 }
 
-int	ft_printhex(unsigned int num, char xX)
+int	ft_printu(unsigned int num)
 {
-	char *base = "0123456789ABCDEF";
 	int	i;
 
 	i = 0;
+	if (num < 10)
+		i += ft_printc(num + 48);
+	else
+	{
+		ft_printu(num / 10);
+		ft_printu(num % 10);
+	}
+	return (i);
+}
+
+int	ft_printhex(unsigned int num, char xX)
+{
+	char *base;
+	int	i;
+
+	i = 0;
+	if (xX == 'x')
+		base = "0123456789abcedf";
+	if (xX == 'X')
+		base = "0123456789ABCDEF";
 	if (num >= 16)
 	{
-		i += ft_printhex(num / 16);
-		i += ft_printhex(num % 16);
+		i += ft_printhex(num / 16, xX);
+		i += ft_printhex(num % 16, xX);
 	}
 	else
 		i += ft_printc(base[num]);
 	return (i);
 }
 
+int	ft_printadd(unsigned long int num)
+{
+	char *base;
+	int	i;
+
+	base = "0123456789abcedf";
+	i = 0;
+	if (!num)
+		return (ft_printc('0'));
+	if (num >= 16)
+	{
+		i += ft_printadd(num / 16);
+		i += ft_printadd(num % 16);
+	}
+	else
+		i += ft_printc(base[num]);
+	return (i);
+}
 int ft_printf(char *str, ...)
 {
-    int i = 0;
-    va_list ptr;
+	int	i;
+
+	i = 0;
+    va_list	ptr;
     va_start(ptr, str);
-	// printf("%c\n", *str);
-	// printf("%c\n", *str++);
 	while (*str)
 	{
-		int	i;
-
-		i = 0;
-		if (*str != '%')
-		{
-			ft_printc(*str);
-		}
-		else
+		if (*str == '%')
 		{
 			str++;
 			if (*str == 'c')
 			{
-				ft_printc(va_arg(ptr, int));
+				i += ft_printc(va_arg(ptr, int));
 			}
-			else if(*str == 's')
+			else if (*str == 's')
 			{
-				ft_prints(va_arg(ptr, char *));
-				// printf("%ld", ft_strlen(va_arg(ptr, char *)));
+				i += ft_prints(va_arg(ptr, char *));
 			}
-			else if(*str == 'p')
-			{
-
-			}
-			else if(*str == 'd')
+			else if (*str == 'd' || *str == 'i')
 			{
 				i += ft_printd(va_arg(ptr, int));
 			}
-			else if(*str == 'i')
-			{
-
-			}
 			else if(*str == 'u')
 			{
-
+				i += ft_printu(va_arg(ptr, unsigned int));
 			}
-			else if(*str == 'x' || *str == 'X')
+			else if (*str == 'x' || *str == 'X')
 			{
-
+				i += ft_printhex(va_arg(ptr, unsigned int), *str);
 			}
-			else if(*str == '%')
+			else if (*str == 'p')
+			{
+				i += ft_prints("0x");
+				i += ft_printadd(va_arg(ptr, unsigned long int));
+			}
+			else if (*str == '%')
 			{
 				i += ft_printc(va_arg(ptr, int));
 			}
 			else
 			{
-				ft_printc('%');
+				i += ft_printc(*str);
 			}
 		}
+		else
+			i += ft_printc(*str);
 		str++;
 	}
 	printf("\n");
-	printf("cspdiuxX%%\n");
-	printf("\n");
-	printf("%c\n", va_arg(ptr, int));
-	printf("%c\n", va_arg(ptr, int));
     va_end(ptr);
-    return i;
+    return (i);
 }
 
 int main()
 {
-	char c = 123;
-	char *cc = "KLM";
-    int result = ft_printf("gh%d%sou", c, cc);
-    printf("Total characters: %d\n", result);
+	int x = 42;
+	int *ptr = &x;
+	unsigned int value = 42;
+
+    printf("The unsigned integer value is: %u\n", value);
+    ft_printf("The unsigned integer value is: %u\n", value);
+
+    // printf("Address of x: %p\n", x);
+    // ft_printf("Address of x: %p\n", x);
+	// // printf("gh%mou\n", 49);
+	// ft_printf("gh%mou\n", 49);
+    // int result = ft_printf("gh%xou\n", 452);
+    // printf("Total characters: %d\n", ft_printf("gh%sou\n", "str"));
     return 0;
 }
