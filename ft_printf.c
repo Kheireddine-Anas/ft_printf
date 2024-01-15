@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_funcs.h"
+#include "ft_printf.h"
 
 int	spcfs(va_list ptr, char c)
 {

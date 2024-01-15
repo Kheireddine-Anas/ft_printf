@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_funcs.h"
+#include "ft_printf.h"
 
 int	ft_printd(int n)
 {
@@ -24,15 +24,14 @@ int	ft_printd(int n)
 	}
 	if (n < 0)
 	{
-		write(1, "-", 1);
-		i++;
+		i += write(1, "-", 1);
 		n = -n;
-		ft_printd(n);
+		i += ft_printd(n);
 	}
 	else if (n > 9)
 	{
-		ft_printd(n / 10);
-		ft_printd(n % 10);
+		i += ft_printd(n / 10);
+		i += ft_printd(n % 10);
 	}
 	else
 	{
@@ -50,8 +49,8 @@ int	ft_printu(unsigned int num)
 		i += ft_printc(num + 48);
 	else
 	{
-		ft_printu(num / 10);
-		ft_printu(num % 10);
+		i += ft_printu(num / 10);
+		i += ft_printu(num % 10);
 	}
 	return (i);
 }

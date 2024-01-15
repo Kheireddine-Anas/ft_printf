@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_funcs.h"
+#include "ft_printf.h"
 
 int	ft_printhex(unsigned long num, char xX)
 {
@@ -19,7 +19,7 @@ int	ft_printhex(unsigned long num, char xX)
 
 	i = 0;
 	if (xX == 'x')
-		base = "0123456789abcedf";
+		base = "0123456789abcdef";
 	if (xX == 'X')
 		base = "0123456789ABCDEF";
 	if (num >= 16)
