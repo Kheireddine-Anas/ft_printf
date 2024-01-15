@@ -10,9 +10,6 @@
 int ft_printf(const char *, ...);
 ```
 
-```c
-int ft_printf(const char *, ...);```
-
 ## Conversions Handled
 
 - `%c`: Prints a single character.
