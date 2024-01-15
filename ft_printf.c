@@ -26,14 +26,15 @@ int	spcfs(va_list ptr, char c)
 	else if(c == 'u')
 		i += ft_printu(va_arg(ptr, unsigned int));
 	else if (c == 'x' || c == 'X')
-		i += ft_printhex(va_arg(ptr, unsigned int), c);
+		i += ft_printhex(va_arg(ptr, unsigned long), c);
 	else if (c == 'p')
 	{
 		i += ft_prints("0x");
-		i += ft_printadd(va_arg(ptr, unsigned long int));
+		// i += ft_printadd(va_arg(ptr, unsigned long int));
+		i += ft_printhex(va_arg(ptr, unsigned long),'x');
 	}
 	else if (c == '%')
-		i += ft_printc(va_arg(ptr, int));
+		i += ft_printc(c);
 	else
 		i += ft_printc(c);
 	return (i);

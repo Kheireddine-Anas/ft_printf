@@ -22,6 +22,8 @@ int	ft_prints(char *s)
 	int	i;
 
 	i = 0;
+	if (!s)
+		ft_prints("(null)");
 	while (*(s + i))
 	{
 		write(1, (s + i), 1);
