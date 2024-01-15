@@ -23,15 +23,14 @@ int	spcfs(va_list ptr, char c)
 		i += ft_prints(va_arg(ptr, char *));
 	else if (c == 'd' || c == 'i')
 		i += ft_printd(va_arg(ptr, int));
-	else if(c == 'u')
+	else if (c == 'u')
 		i += ft_printu(va_arg(ptr, unsigned int));
 	else if (c == 'x' || c == 'X')
 		i += ft_printhex(va_arg(ptr, unsigned long), c);
 	else if (c == 'p')
 	{
 		i += ft_prints("0x");
-		// i += ft_printadd(va_arg(ptr, unsigned long int));
-		i += ft_printhex(va_arg(ptr, unsigned long),'x');
+		i += ft_printhex(va_arg(ptr, unsigned long), 'x');
 	}
 	else if (c == '%')
 		i += ft_printc(c);
@@ -40,13 +39,13 @@ int	spcfs(va_list ptr, char c)
 	return (i);
 }
 
-int ft_printf(char *str, ...)
+int	ft_printf(char *str, ...)
 {
-	int	i;
+	va_list	ptr;
+	int		i;
 
 	i = 0;
-    va_list	ptr;
-    va_start(ptr, str);
+	va_start(ptr, str);
 	while (*str)
 	{
 		if (*str == '%')
@@ -58,6 +57,6 @@ int ft_printf(char *str, ...)
 			i += ft_printc(*str);
 		str++;
 	}
-    va_end(ptr);
-    return (i);
+	va_end(ptr);
+	return (i);
 }
