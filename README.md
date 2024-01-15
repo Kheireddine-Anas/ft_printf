@@ -1,12 +1,11 @@
-# libftprintf
+# ft_printf
 
 ## Description
 
-`libftprintf` is a library that contains a function `ft_printf()`, which mimics the behavior of the original `printf()` function from the C standard library. The purpose of this project is to recode the `printf()` function without implementing the buffer management of the original.
+`libftprintf.a` is a library that contains a function `ft_printf()`, which mimics the behavior of the original `printf()` function from the C standard library. The purpose of this project is to recode the `printf()` function without implementing the buffer management of the original.
 
 ## Prototype
 ```c
-//  your code block here
 int ft_printf(const char *, ...);
 ```
 
@@ -24,8 +23,8 @@ int ft_printf(const char *, ...);
 
 ## Requirements
 
-- External Functions: `malloc`, `free`, `write`, `va_start`, `va_arg`, `va_copy`, `va_end`.
-- Libft Authorized: Yes.
+- External Functions: `write`, `va_start`, `va_arg`, `va_copy`, `va_end`, (`malloc` && `free`) I didn't use it in my code.
+- Libft Authorized: Yes (I don't inlude it in the code).
 
 
 ## Notes
@@ -35,8 +34,13 @@ int ft_printf(const char *, ...);
 - The function will be compared against the original `printf()`.
 - The library is created using the `ar` command. The use of `libtool` is forbidden.
 
+## Turn in files
+
+- The program name (`libftprintf.a`).
+- Files : (`ft_printf.c` && `Makefile` && `file.c`).
+
 ## Author
 
-Your Name
+Kheireddine-Anas
 
-Feel free to enhance this README with additional information or specific project details.
+kheireddine.anas@gmail.com
