@@ -5,6 +5,10 @@
 `libftprintf` is a library that contains a function `ft_printf()`, which mimics the behavior of the original `printf()` function from the C standard library. The purpose of this project is to recode the `printf()` function without implementing the buffer management of the original.
 
 ## Prototype
+```c
+//  your code block here
+int ft_printf(const char *, ...);
+```
 
 ```c
 int ft_printf(const char *, ...);```
