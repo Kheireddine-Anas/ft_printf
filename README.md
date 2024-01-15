@@ -6,7 +6,7 @@
 
 ## Prototype
 
-```c
+```c```
 int ft_printf(const char *, ...);
 
 ## Conversions Handled
@@ -26,43 +26,6 @@ int ft_printf(const char *, ...);
 - External Functions: `malloc`, `free`, `write`, `va_start`, `va_arg`, `va_copy`, `va_end`.
 - Libft Authorized: Yes.
 
-## Usage
-
-1. Clone the repository:
-
-    ```bash
-    git clone https://github.com/your-username/libftprintf.git
-    ```
-
-2. Navigate to the project directory:
-
-    ```bash
-    cd libftprintf
-    ```
-
-3. Build the library:
-
-    ```bash
-    make
-    ```
-
-4. Clean object files:
-
-    ```bash
-    make clean
-    ```
-
-5. Clean all generated files:
-
-    ```bash
-    make fclean
-    ```
-
-6. Rebuild the library:
-
-    ```bash
-    make re
-    ```
 
 ## Notes
 
