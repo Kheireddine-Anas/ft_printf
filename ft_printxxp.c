@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-int	ft_printhex(unsigned long num, char xX)
+int	ft_printhex(unsigned int num, char xX)
 {
 	char	*base;
 	int		i;
@@ -26,6 +26,23 @@ int	ft_printhex(unsigned long num, char xX)
 	{
 		i += ft_printhex(num / 16, xX);
 		i += ft_printhex(num % 16, xX);
+	}
+	else
+		i += ft_printc(base[num]);
+	return (i);
+}
+
+int	ft_printadd(unsigned long int num)
+{
+	char	*base;
+	int		i;
+
+	i = 0;
+	base = "0123456789abcdef";
+	if (num >= 16)
+	{
+		i += ft_printadd(num / 16);
+		i += ft_printadd(num % 16);
 	}
 	else
 		i += ft_printc(base[num]);
