@@ -1,6 +1,6 @@
 NAME	= libftprintf.a
 
-FLAGS	= -Wall -Werror -Wextra
+CFLAGS	= -Wall -Werror -Wextra
 
 RM		= rm -rf
 
